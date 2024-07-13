@@ -57,3 +57,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadContent('es'); // Load Spanish content by default
 });
+
