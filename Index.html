@@ -14,15 +14,22 @@
 </head>
 <body>
     <header class="bg-dark text-white text-center py-3">
-        <h1>Juan Carlos Daniel Giordano</h1>
-        <p>Analista de Sistemas | Marketing Sr.</p>
-        <nav>
-            <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link text-white" href="#es" id="es-link"><img src="https://img.icons8.com/?size=48&id=ZGEFKpJoPdJQ&format=png" alt="Español"></a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="#en" id="en-link"><img src="https://img.icons8.com/?size=48&id=15534&format=png" alt="Inglés"></a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="#pt" id="pt-link"><img src="https://img.icons8.com/?size=48&id=iHI2gDXCsMzH&format=png" alt="Portugués"></a></li>
-            </ul>
-        </nav>
+        <div class="d-flex justify-content-between align-items-center">
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="#es" id="es-link"><img src="https://img.icons8.com/?size=48&id=ZGEFKpJoPdJQ&format=png" alt="Español"></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#en" id="en-link"><img src="https://img.icons8.com/?size=48&id=15534&format=png" alt="Inglés"></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#pt" id="pt-link"><img src="https://img.icons8.com/?size=48&id=iHI2gDXCsMzH&format=png" alt="Portugués"></a></li>
+                </ul>
+            </nav>
+            <div>
+                <h1>Juan Carlos Daniel Giordano</h1>
+                <p>Analista de Sistemas | Marketing Sr.</p>
+            </div>
+            <div>
+                <img src="images/1719025875934.jpeg" alt="Juan Carlos Daniel Giordano" class="profile-pic">
+            </div>
+        </div>
     </header>
     <main id="content" class="container my-5">
         <!-- Content will be dynamically loaded here -->
@@ -50,7 +57,87 @@
             masterExcel: "https://udemy-certificate.s3.amazonaws.com/image/UC-4bea49ec-044f-4f17-99a3-b6e8ce5ce039.jpg?v=1584575565000",
             tangoGestion: "https://www.cio.com.ar/certifications/verify/xyz"
         };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const content = document.getElementById('content');
+            const esLink = document.getElementById('es-link');
+            const enLink = document.getElementById('en-link');
+            const ptLink = document.getElementById('pt-link');
+
+            esLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                loadContent('es');
+                setActiveLink(event.target);
+            });
+            enLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                loadContent('en');
+                setActiveLink(event.target);
+            });
+            ptLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                loadContent('pt');
+                setActiveLink(event.target);
+            });
+
+            function loadContent(lang) {
+                fetch(`content/content-${lang}.html`)
+                    .then(response => response.text())
+                    .then(data => {
+                        content.innerHTML = data;
+                        attachLinks();
+                        attachToggleDetailsEvent();
+                        addSheetButton();
+                    })
+                    .catch(error => console.error('Error loading content:', error));
+            }
+
+            function setActiveLink(activeLink) {
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                activeLink.classList.add('active');
+            }
+
+            function attachLinks() {
+                document.querySelectorAll('[data-link]').forEach(element => {
+                    const linkKey = element.getAttribute('data-link');
+                    element.setAttribute('href', links[linkKey]);
+                });
+            }
+
+            function attachToggleDetailsEvent() {
+                document.querySelectorAll('button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const details = button.nextElementSibling;
+                        details.classList.toggle('active');
+                        button.textContent = details.classList.contains('active') ? 'Mostrar menos' : 'Mostrar más';
+                    });
+                });
+            }
+
+            function addSheetButton() {
+                const educationSection = document.querySelector('h2:contains("Educación")').parentElement;
+                const sheetButton = document.createElement('button');
+                sheetButton.id = 'show-sheet';
+                sheetButton.className = 'btn btn-primary';
+                sheetButton.textContent = 'Mostrar avances en la carrera';
+                educationSection.appendChild(sheetButton);
+
+                const sheetContainer = document.createElement('div');
+                sheetContainer.id = 'sheet-container';
+                sheetContainer.style.display = 'none';
+                sheetContainer.innerHTML = '<iframe id="sheet-iframe" src="" width="100%" height="600px"></iframe>';
+                educationSection.appendChild(sheetContainer);
+
+                sheetButton.addEventListener('click', () => {
+                    sheetContainer.style.display = sheetContainer.style.display === 'none' ? 'block' : 'none';
+                    document.getElementById('sheet-iframe').src = "https://docs.google.com/spreadsheets/d/1QULAQLIR5fyyYdPZKMeA7eqYSYrDoS4iFSDOfydRm4s/edit?usp=sharing";
+                });
+            }
+
+            loadContent('es'); // Load Spanish content by default
+        });
     </script>
-    <script src="js/script.js"></script>
 </body>
 </html>
