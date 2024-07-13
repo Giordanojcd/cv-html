@@ -12,21 +12,8 @@ header {
     text-align: center;
 }
 
-header .d-flex {
-    align-items: center;
-    justify-content: space-between;
-}
-
 header p {
     margin: 5px 0;
-}
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-left: 20px;
 }
 
 nav ul {
@@ -116,8 +103,4 @@ button:hover {
 
 .details.active {
     display: block;
-}
-
-#sheet-container {
-    margin-top: 20px;
 }
