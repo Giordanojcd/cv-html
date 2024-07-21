@@ -1,27 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('content');
-    const esLink = document.getElementById('es-link');
-    const enLink = document.getElementById('en-link');
-    const ptLink = document.getElementById('pt-link');
+    const currentLang = document.getElementById('current-lang');
+    const languageOptions = document.getElementById('language-options');
 
-    esLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        loadContent('es');
-        setActiveLink(event.target);
-    });
-    enLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        loadContent('en');
-        setActiveLink(event.target);
-    });
-    ptLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        loadContent('pt');
-        setActiveLink(event.target);
-    });
+    const links = {
+        es: "content/content-es.html",
+        en: "content/content-en.html",
+        pt: "content/content-pt.html"
+    };
 
     function loadContent(lang) {
-        fetch(`content/content-${lang}.html`)
+        fetch(links[lang])
             .then(response => response.text())
             .then(data => {
                 content.innerHTML = data;
@@ -31,34 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error loading content:', error));
     }
 
-    function setActiveLink(activeLink) {
-        document.querySelectorAll('nav a').forEach(link => {
-            link.classList.remove('active');
-        });
-        activeLink.classList.add('active');
-    }
-
     function attachLinks() {
-        const links = {
-            gwinn: "https://gwinn.com.ar/",
-            israelToWorld: "https://www.israeltotheworld.org/",
-            digitalAsado: "https://digitalasado.com/",
-            nelo: "https://nellomarket.com.ar/",
-            lubricacion: "https://lubricacionsaic.net/",
-            romboidal: "https://www.instagram.com/romboidalok/",
-            siglo21: "https://21.edu.ar/",
-            marketingStrategies: "https://www.linkedin.com/learning/marketing-strategies-in-linkedin",
-            linkedinFundamentals: "https://www.linkedin.com/learning/linkedin-marketing-fundamentals",
-            efSet: "https://www.efset.org/cert/SL2gyW",
-            intermediateSQL: "https://www.datacamp.com/statement-of-accomplishment/course/814e9a757e00f9d5ab209090acfa98313b498f69",
-            intermediatePython: "https://www.datacamp.com/statement-of-accomplishment/course/aff02223d15bdc4167aa1dc26109dd88d17ec2cc",
-            introDataScience: "https://www.datacamp.com/statement-of-accomplishment/course/9cb4975a022c56113dc93d39115e616febdebe6a",
-            pythonIBM: "https://courses.cognitiveclass.ai/certificates/5b2fc0f5084f466db521c4daab0a33da",
-            argentinaPrograma: "https://mumuki.io/argentina-programa/certificates/verify/ccvYTLGkzw1Yoci3",
-            masterExcel: "https://udemy-certificate.s3.amazonaws.com/image/UC-4bea49ec-044f-4f17-99a3-b6e8ce5ce039.jpg?v=1584575565000",
-            tangoGestion: "https://www.cio.com.ar/certifications/verify/xyz"
-        };
-
         document.querySelectorAll('[data-link]').forEach(element => {
             const linkKey = element.getAttribute('data-link');
             element.setAttribute('href', links[linkKey]);
@@ -75,5 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    loadContent('es'); // Load Spanish content by default
+    languageOptions.addEventListener('click', (event) => {
+        const lang = event.target.getAttribute('data-lang');
+        if (lang) {
+            currentLang.src = event.target.src;
+            loadContent(lang);
+        }
+    });
+
+    // Load Spanish content by default
+    loadContent('es');
 });
