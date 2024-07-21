@@ -19,6 +19,13 @@ header .d-flex {
 
 header p {
     margin: 5px 0;
+    color: #ffffff; /* Color del texto de la descripción */
+    font-weight: bold; /* Texto en negrita */
+}
+
+header h1 {
+    color: #ffffff; /* Color del texto del nombre */
+    font-weight: bold; /* Texto en negrita */
 }
 
 .profile-pic {
