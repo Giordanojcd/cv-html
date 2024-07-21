@@ -29,38 +29,65 @@ header p {
     margin-left: 20px;
 }
 
+.nav-menu {
+    position: relative;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
 .nav-menu ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #27242a;
 }
 
 .nav-menu ul li {
-    display: inline;
     margin: 0 10px;
 }
 
 .nav-menu ul li a {
     color: white;
     text-decoration: none;
+    padding: 10px 20px;
+    display: block;
 }
 
 .nav-menu ul li a:hover {
-    text-decoration: underline;
+    background-color: #84b09b;
+    border-radius: 5px;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
 
-nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
+    .nav-menu ul {
+        display: none;
+        flex-direction: column;
+    }
 
-nav ul li img {
-    width: 24px;
-    height: 24px;
+    #menu-toggle:checked + .menu {
+        display: flex;
+    }
+
+    .nav-menu ul li {
+        margin: 10px 0;
+    }
 }
 
 main {
