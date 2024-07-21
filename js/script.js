@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', () => {
                 const details = button.nextElementSibling;
                 details.classList.toggle('active');
-                button.textContent = details.classList.contains('active') ? 'Mostrar menos' : 'Mostrar más';
+                button.textContent = details.classList.contains('active') ? '<' : '>';
             });
         });
     }
