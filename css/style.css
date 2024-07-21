@@ -70,6 +70,9 @@ main {
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1, h2 {
@@ -223,4 +226,32 @@ button:hover {
 
 #timeline-role {
     font-size: 18px;
+}
+
+/* Year menu */
+.year-menu {
+    margin-bottom: 20px;
+}
+
+.year-menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.year-menu ul li {
+    background-color: #C69141;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.year-menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.year-menu ul li a:hover {
+    text-decoration: underline;
 }
