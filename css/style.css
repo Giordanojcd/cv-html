@@ -120,6 +120,10 @@ section ul li a:hover {
     text-decoration: underline;
 }
 
+section ul li span.date {
+    color: #C0C0C8; /* Color de las fechas de las experiencias laborales */
+}
+
 button {
     background-color: #84b09b; /* Color de fondo de los botones */
     border: none;
