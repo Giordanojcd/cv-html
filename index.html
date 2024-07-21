@@ -15,16 +15,18 @@
 <body>
     <header class="bg-dark text-white text-center py-3">
         <div class="d-flex justify-content-between align-items-center">
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link text-white" href="#es" id="es-link"><img src="https://img.icons8.com/?size=48&id=ZGEFKpJoPdJQ&format=png" alt="Español"></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#en" id="en-link"><img src="https://img.icons8.com/?size=48&id=15534&format=png" alt="Inglés"></a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#pt" id="pt-link"><img src="https://img.icons8.com/?size=48&id=iHI2gDXCsMzH&format=png" alt="Portugués"></a></li>
-                </ul>
-            </nav>
             <div>
                 <h1>Juan Carlos Daniel Giordano</h1>
                 <p>Analista de Sistemas | Marketing Sr.</p>
+                <nav class="nav-menu">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item"><a class="nav-link" href="#profile">Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#experience">Experiencia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#education">Educación</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#skills">Habilidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+                    </ul>
+                </nav>
             </div>
             <div>
                 <img src="images/Sin%20título-2.png" alt="Juan Carlos Daniel Giordano" class="profile-pic">
@@ -35,6 +37,16 @@
     <main id="content" class="container my-5">
         <!-- Content will be dynamically loaded here -->
     </main>
+    <footer>
+        <div class="language-switcher">
+            <img id="current-lang" src="https://img.icons8.com/?size=48&id=ZGEFKpJoPdJQ&format=png" alt="Español">
+            <div class="language-options" id="language-options">
+                <img src="https://img.icons8.com/?size=48&id=ZGEFKpJoPdJQ&format=png" alt="Español" data-lang="es">
+                <img src="https://img.icons8.com/?size=48&id=15534&format=png" alt="Inglés" data-lang="en">
+                <img src="https://img.icons8.com/?size=48&id=iHI2gDXCsMzH&format=png" alt="Portugués" data-lang="pt">
+            </div>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
