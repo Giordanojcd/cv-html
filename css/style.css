@@ -200,3 +200,27 @@ button:hover {
     left: -30px;
     right: auto;
 }
+
+/* Timeline animation */
+.timeline-animation {
+    position: fixed;
+    top: 20%;
+    left: 0;
+    background-color: #0A66C2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+#timeline-year {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+#timeline-role {
+    font-size: 18px;
+}
