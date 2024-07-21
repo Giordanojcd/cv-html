@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('content');
     const currentLang = document.getElementById('current-lang');
+    const languageSwitcher = document.getElementById('language-switcher');
     const languageOptions = document.getElementById('language-options');
 
     const links = {
@@ -36,6 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    languageSwitcher.addEventListener('mouseenter', () => {
+        languageOptions.style.display = 'block';
+    });
+
+    languageSwitcher.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+            languageOptions.style.display = 'none';
+        }, 300);
+    });
+
+    languageOptions.addEventListener('mouseenter', () => {
+        languageOptions.style.display = 'block';
+    });
+
+    languageOptions.addEventListener('mouseleave', () => {
+        languageOptions.style.display = 'none';
+    });
 
     languageOptions.addEventListener('click', (event) => {
         const lang = event.target.getAttribute('data-lang');
