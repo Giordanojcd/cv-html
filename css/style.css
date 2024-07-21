@@ -2,12 +2,12 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4e7d5; /* Color de fondo */
+    background-color: #f4e7d5;
 }
 
 header {
-    background-color: #27242a; /* Color de fondo del encabezado */
-    color: #f4e7d5; /* Color del texto del encabezado */
+    background-color: #27242a;
+    color: white;
     padding: 10px 0;
     text-align: center;
 }
@@ -19,13 +19,6 @@ header .d-flex {
 
 header p {
     margin: 5px 0;
-    color: #ffffff; /* Color del texto de la descripción */
-    font-weight: bold; /* Texto en negrita */
-}
-
-header h1 {
-    color: #ffffff; /* Color del texto del nombre */
-    font-weight: bold; /* Texto en negrita */
 }
 
 .profile-pic {
@@ -36,20 +29,23 @@ header h1 {
     margin-left: 20px;
 }
 
-.libutton {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 7px;
-    text-align: center;
-    outline: none;
-    text-decoration: none !important;
-    color: #ffffff !important;
-    width: 200px;
-    height: 32px;
-    border-radius: 16px;
-    background-color: #84b09b; /* Color de fondo del botón de LinkedIn */
-    font-family: "SF Pro Text", Helvetica, sans-serif;
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-menu ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.nav-menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-menu ul li a:hover {
+    text-decoration: underline;
 }
 
 nav ul {
@@ -62,11 +58,6 @@ nav ul li {
     margin: 0 10px;
 }
 
-nav ul li a {
-    color: #f4e7d5; /* Color del texto de los enlaces de navegación */
-    text-decoration: none;
-}
-
 nav ul li img {
     width: 24px;
     height: 24px;
@@ -74,28 +65,28 @@ nav ul li img {
 
 main {
     padding: 20px;
-    background: #f4e7d5; /* Color de fondo principal */
+    background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 h1, h2 {
     font-family: 'Courier New', serif;
-    color: #27242a; /* Color del texto de los encabezados */
+    color: #84b09b;
 }
 
 p, li {
-    color: #27242a; /* Color del texto de los párrafos y listas */
+    color: #27242a;
 }
 
 section {
-    border-left: 5px solid #84b09b; /* Color del borde izquierdo de las secciones */
+    border-left: 5px solid #84b09b;
     padding-left: 15px;
     margin-bottom: 20px;
 }
 
 section h2 {
-    border-bottom: 2px solid #27242a; /* Color del borde inferior de los encabezados de sección */
+    border-bottom: 2px solid #C0C0C8;
     padding-bottom: 5px;
 }
 
@@ -105,14 +96,14 @@ section ul {
 }
 
 section ul li {
-    background-color: #f4e7d5; /* Color de fondo de los elementos de la lista */
+    background-color: #f4e7d5;
     padding: 10px;
     margin-bottom: 5px;
     border-radius: 5px;
 }
 
 section ul li a {
-    color: #27242a; /* Color del texto de los enlaces de los elementos de la lista */
+    color: #27242a;
     text-decoration: none;
 }
 
@@ -120,21 +111,17 @@ section ul li a:hover {
     text-decoration: underline;
 }
 
-section ul li span.date {
-    color: #C0C0C8; /* Color de las fechas de las experiencias laborales */
-}
-
 button {
-    background-color: #84b09b; /* Color de fondo de los botones */
+    background-color: #84b09b;
     border: none;
-    color: white; /* Color del texto de los botones */
+    color: white;
     padding: 5px 10px;
     margin-top: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #27242a; /* Color de fondo de los botones al pasar el cursor */
+    background-color: #C0C0C8;
 }
 
 .details {
@@ -145,100 +132,42 @@ button:hover {
     display: block;
 }
 
-.company-logo {
-    width: 50px;
-    height: auto;
-    vertical-align: middle;
-    margin-right: 10px;
+#sheet-container {
+    margin-top: 20px;
 }
 
-/* Timeline style */
-.timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 10px 0;
-}
-
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    background-color: #84b09b; /* Color de la línea de la timeline */
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
-}
-
-.timeline ul {
-    padding: 0;
-    list-style-type: none;
-}
-
-.timeline ul li {
-    position: relative;
-    width: 50%;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.timeline ul li:nth-child(odd) {
-    left: 0;
-}
-
-.timeline ul li:nth-child(even) {
-    left: 50%;
-}
-
-.timeline ul li::before {
-    content: attr(data-year);
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    top: 15px;
-    right: -30px;
-    background-color: #84b09b; /* Color del círculo de la timeline */
-    color: white; /* Color del texto dentro del círculo */
-    border-radius: 50%;
-    line-height: 60px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.timeline ul li:nth-child(even)::before {
-    left: -30px;
-    right: auto;
-}
-
-/* Timeline animation */
-.timeline-animation {
+.language-switcher {
     position: fixed;
-    top: 20%;
-    left: 0;
-    background-color: #84b09b; /* Color de fondo de la animación de la timeline */
-    color: white; /* Color del texto de la animación de la timeline */
-    padding: 10px;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.language-switcher img {
+    width: 48px;
+    height: 48px;
+}
+
+.language-options {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 20px;
-    font-weight: bold;
-    z-index: 1000;
-    transition: all 0.3s ease;
 }
 
-#timeline-year {
-    font-size: 24px;
-    margin-bottom: 5px;
+.language-options img {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
 }
 
-#timeline-role {
-    font-size: 18px;
+.language-options img:hover {
+    background: #f4e7d5;
 }
 
-.language-logo {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    margin-right: 10px;
+.language-switcher:hover .language-options {
+    display: block;
 }
