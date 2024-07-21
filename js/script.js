@@ -3,10 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const esLink = document.getElementById('es-link');
     const enLink = document.getElementById('en-link');
     const ptLink = document.getElementById('pt-link');
-    const timelineAnimation = document.getElementById('timeline-animation');
-    const timelineYear = document.getElementById('timeline-year');
-    const timelineRole = document.getElementById('timeline-role');
-    const yearMenu = document.getElementById('year-menu');
 
     esLink.addEventListener('click', (event) => {
         event.preventDefault();
@@ -24,23 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setActiveLink(event.target);
     });
 
-    yearMenu.addEventListener('click', (event) => {
-        if (event.target.tagName === 'A') {
-            event.preventDefault();
-            const year = event.target.getAttribute('data-year');
-            showExperienceForYear(year);
-            setActiveYearLink(event.target);
-        }
-    });
-
     function loadContent(lang) {
         fetch(`content/content-${lang}.html`)
             .then(response => response.text())
             .then(data => {
-                content.querySelector('.timeline').innerHTML = data;
+                content.innerHTML = data;
                 attachLinks();
                 attachToggleDetailsEvent();
-                window.addEventListener('scroll', updateTimelineAnimation);
             })
             .catch(error => console.error('Error loading content:', error));
     }
@@ -87,42 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.textContent = details.classList.contains('active') ? 'Mostrar menos' : 'Mostrar más';
             });
         });
-    }
-
-    function updateTimelineAnimation() {
-        const sections = document.querySelectorAll('.timeline ul li');
-        let currentSection = sections[0];
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-                currentSection = section;
-            }
-        });
-
-        const year = currentSection.getAttribute('data-year');
-        const role = currentSection.querySelector('a').textContent;
-
-        timelineYear.textContent = year;
-        timelineRole.textContent = role;
-    }
-
-    function showExperienceForYear(year) {
-        const sections = document.querySelectorAll('.timeline ul li');
-        sections.forEach(section => {
-            if (section.getAttribute('data-year') === year) {
-                section.style.display = 'block';
-            } else {
-                section.style.display = 'none';
-            }
-        });
-        updateTimelineAnimation();
-    }
-
-    function setActiveYearLink(activeLink) {
-        document.querySelectorAll('.year-menu ul li a').forEach(link => {
-            link.classList.remove('active');
-        });
-        activeLink.classList.add('active');
     }
 
     loadContent('es'); // Load Spanish content by default
