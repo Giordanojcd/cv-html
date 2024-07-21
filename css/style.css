@@ -235,3 +235,10 @@ button:hover {
 #timeline-role {
     font-size: 18px;
 }
+
+.language-logo {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
