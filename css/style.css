@@ -167,7 +167,3 @@ button:hover {
 .language-options img:hover {
     background: #f4e7d5;
 }
-
-.language-switcher:hover .language-options {
-    display: block;
-}
