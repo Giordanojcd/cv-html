@@ -121,3 +121,10 @@ button:hover {
 #sheet-container {
     margin-top: 20px;
 }
+
+.company-logo {
+    width: 30px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+}
