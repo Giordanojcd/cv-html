@@ -59,4 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
             tangoGestion: "https://www.cio.com.ar/certifications/verify/xyz"
         };
 
-        document.querySelectorAll('[data-link]').
+        document.querySelectorAll('[data-link]').forEach(element => {
+            const linkKey = element.getAttribute('data-link');
+            element.setAttribute('href', links[linkKey]);
+        });
+    }
+
+    function attachToggleDetailsEvent() {
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.nextElementSibling;
+                details.classList.toggle('active');
+                button.textContent = details.classList.contains('active') ? '<' : '>';
+            });
+        });
+    }
+
+    loadContent('es'); // Load Spanish content by default
+});
