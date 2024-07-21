@@ -67,7 +67,7 @@ nav ul li img {
 
 main {
     padding: 20px;
-    background: #ecd4c6; /* Color de fondo principal */
+    background: #f4e7d5; /* Color de fondo principal */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -196,7 +196,7 @@ button:hover {
     font-weight: bold;
 }
 
-.timeline ul li:nth-child(even::before) {
+.timeline ul li:nth-child(even)::before {
     left: -30px;
     right: auto;
 }
