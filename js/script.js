@@ -369,6 +369,7 @@ const sharedData = {
     ],
     education: [
         {
+            key: "degree",
             title: {
                 es: "Licenciatura / Ingeniería en Informática",
                 en: "Computer Science / Information Technology Degree",
@@ -384,6 +385,7 @@ const sharedData = {
             cta: { es: "Ver avance académico", en: "View academic progress", pt: "Ver progresso acadêmico" }
         },
         {
+            key: "analyst",
             title: {
                 es: "Título intermedio: Analista de Sistemas",
                 en: "Intermediate Degree: Systems Analyst",
@@ -532,7 +534,10 @@ const translations = {
             lead: "Soy Juan Carlos Daniel Giordano. Conecto performance marketing, IT, datos y código para construir sistemas de crecimiento reales: campañas, funnels, automatizaciones, reporting y operación tecnológica.",
             primaryCta: "Hablemos",
             secondaryCta: "Ver experiencia",
-            availability: "Disponible para proyectos, consultoría y nuevos desafíos."
+            availability: {
+                title: "Disponible ahora",
+                subtitle: "Para proyectos, consultoría y nuevos desafíos."
+            }
         },
         stats: [
             { value: "18+", label: "años de experiencia combinando operaciones, ventas, compras, marketing e IT" },
@@ -550,7 +555,7 @@ const translations = {
         profile: {
             kicker: "Perfil",
             title: "Una carrera híbrida, técnica y comercial.",
-            summary: "Mi recorrido une marketing digital, infraestructura, desarrollo y análisis con una mirada muy orientada a negocio. Me siento cómodo escalando campañas, diseñando automatizaciones, implementando herramientas y mejorando procesos operativos. Esa combinación me permite moverme con soltura entre estrategia, ejecución y soporte técnico.",
+            summary: "Mi recorrido conecta marketing digital, infraestructura, desarrollo y análisis con una mirada muy orientada a negocio.\n\nTrabajo cómodo escalando campañas, diseñando automatizaciones e implementando herramientas que mejoran procesos. Esa mezcla me permite moverme con naturalidad entre estrategia, ejecución y soporte técnico.",
             highlightsTitle: "Lo que aporto hoy"
         },
         experience: { kicker: "Trayectoria", title: "Experiencia construida entre growth, IT y operación.", toggleOpen: "Ver detalle", toggleClose: "Ocultar" },
@@ -587,7 +592,10 @@ const translations = {
             lead: "I am Juan Carlos Daniel Giordano. I connect performance marketing, IT, data, and code to build real growth systems: campaigns, funnels, automations, reporting, and technology operations.",
             primaryCta: "Let's talk",
             secondaryCta: "View experience",
-            availability: "Open to projects, consulting, and new challenges."
+            availability: {
+                title: "Available now",
+                subtitle: "For projects, consulting, and new challenges."
+            }
         },
         stats: [
             { value: "18+", label: "years of combined experience across operations, sales, procurement, marketing, and IT" },
@@ -605,7 +613,7 @@ const translations = {
         profile: {
             kicker: "Profile",
             title: "A hybrid career across business and technology.",
-            summary: "My background blends digital marketing, infrastructure, development, and analytics with a strong business mindset. I am comfortable scaling campaigns, designing automations, implementing tools, and improving operational workflows. That combination lets me move easily between strategy, execution, and technical support.",
+            summary: "My background connects digital marketing, infrastructure, development, and analytics with a strong business mindset.\n\nI am comfortable scaling campaigns, designing automations, and implementing tools that improve operations. That mix lets me move naturally between strategy, execution, and technical support.",
             highlightsTitle: "What I bring today"
         },
         experience: { kicker: "Career path", title: "A track record built across growth, IT, and operations.", toggleOpen: "View details", toggleClose: "Hide" },
@@ -642,7 +650,10 @@ const translations = {
             lead: "Sou Juan Carlos Daniel Giordano. Conecto performance marketing, TI, dados e código para construir sistemas reais de crescimento: campanhas, funis, automações, relatórios e operação tecnológica.",
             primaryCta: "Vamos conversar",
             secondaryCta: "Ver experiência",
-            availability: "Disponível para projetos, consultoria e novos desafios."
+            availability: {
+                title: "Disponível agora",
+                subtitle: "Para projetos, consultoria e novos desafios."
+            }
         },
         stats: [
             { value: "18+", label: "anos de experiência combinando operações, vendas, compras, marketing e TI" },
@@ -660,7 +671,7 @@ const translations = {
         profile: {
             kicker: "Perfil",
             title: "Uma carreira híbrida entre negócio e tecnologia.",
-            summary: "Minha trajetória reúne marketing digital, infraestrutura, desenvolvimento e análise com forte visão de negócio. Tenho facilidade para escalar campanhas, desenhar automações, implementar ferramentas e melhorar fluxos operacionais. Essa combinação me permite atuar entre estratégia, execução e suporte técnico.",
+            summary: "Minha trajetória conecta marketing digital, infraestrutura, desenvolvimento e análise com forte visão de negócio.\n\nTenho facilidade para escalar campanhas, desenhar automações e implementar ferramentas que melhoram operações. Essa combinação me permite atuar com naturalidade entre estratégia, execução e suporte técnico.",
             highlightsTitle: "O que entrego hoje"
         },
         experience: { kicker: "Trajetória", title: "Experiência construída entre growth, TI e operação.", toggleOpen: "Ver detalhes", toggleClose: "Ocultar" },
@@ -737,6 +748,26 @@ const elements = {
     contactTilt: document.querySelector("[data-contact-tilt]")
 };
 
+function buildHeroTitleMarkup(lang, titleText) {
+    const terminalWords = {
+        es: "resultados.",
+        en: "impact.",
+        pt: "real."
+    };
+    const marker = terminalWords[lang];
+    const lowerTitle = titleText.toLowerCase();
+    const markerIndex = lowerTitle.lastIndexOf(marker);
+
+    if (markerIndex === -1) {
+        return titleText;
+    }
+
+    const before = titleText.slice(0, markerIndex);
+    const wordWithDot = titleText.slice(markerIndex);
+    const word = wordWithDot.slice(0, -1);
+    return `${before}<span class="terminal-word">${word}<span class="terminal-dot">.</span></span>`;
+}
+
 function iconMarkup(iconClass) {
     return `<i class="fa-solid ${iconClass}"></i>`;
 }
@@ -764,11 +795,68 @@ function renderStats(locale) {
     elements.statsGrid.innerHTML = locale.stats
         .map((stat) => `
             <article class="stat-card">
-                <strong>${stat.value}</strong>
+                <strong data-counter="${stat.value}">0</strong>
                 <span>${stat.label}</span>
             </article>
         `)
         .join("");
+
+    setupStatCounterObserver();
+}
+
+function animateSingleStatCounter(element) {
+    if (!element || element.dataset.counterAnimated === "true") {
+        return;
+    }
+
+    const rawValue = element.dataset.counter || "0";
+    const numericValue = parseInt(rawValue.replace(/[^\d]/g, ""), 10);
+    const suffix = rawValue.replace(/[\d]/g, "");
+
+    if (Number.isNaN(numericValue)) {
+        element.textContent = rawValue;
+        element.dataset.counterAnimated = "true";
+        return;
+    }
+
+    element.dataset.counterAnimated = "true";
+    const duration = 2400;
+    const start = performance.now();
+
+    function easeOutExpo(t) {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const current = Math.round(numericValue * easeOutExpo(progress));
+        element.textContent = `${current}${suffix}`;
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else {
+            element.textContent = rawValue;
+            element.classList.remove("counter-glow");
+            void element.offsetWidth;
+            element.classList.add("counter-glow");
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+function setupStatCounterObserver() {
+    const counters = document.querySelectorAll("[data-counter]");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                animateSingleStatCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.65 });
+
+    counters.forEach((counter) => observer.observe(counter));
 }
 
 function renderFocus(locale) {
@@ -786,11 +874,31 @@ function renderFocus(locale) {
 function renderProfile(locale) {
     elements.profileKicker.textContent = locale.profile.kicker;
     elements.profileTitle.textContent = locale.profile.title;
-    elements.profileSummary.textContent = locale.profile.summary;
+    elements.profileSummary.innerHTML = locale.profile.summary
+        .split("\n\n")
+        .map((paragraph, index) => `<p class="${index === 0 ? "profile-lead" : "profile-subcopy"}">${paragraph}</p>`)
+        .join("");
     elements.profileHighlightsTitle.textContent = locale.profile.highlightsTitle;
     elements.profileHighlights.innerHTML = sharedData.profileHighlights
         .map((item) => renderTechChip(item, "fa-sparkles"))
         .join("");
+}
+
+function getExperienceYearLabel(periodText) {
+    const years = [...periodText.matchAll(/\b(20\d{2})\b/g)].map((match) => match[1]);
+    const uniqueYears = [...new Set(years)];
+
+    if (uniqueYears.length === 0) {
+        return "";
+    }
+
+    if (uniqueYears.length === 1) {
+        return uniqueYears[0];
+    }
+
+    const startYear = uniqueYears[0];
+    const endYear = uniqueYears[uniqueYears.length - 1];
+    return startYear === endYear ? startYear : `${startYear} - ${endYear}`;
 }
 
 function renderExperience(locale, lang) {
@@ -799,12 +907,14 @@ function renderExperience(locale, lang) {
     elements.experienceList.innerHTML = sharedData.experience
         .map((job, index) => {
             const isOpen = index === 0;
+            const yearLabel = getExperienceYearLabel(job.period[lang]);
             const logo = job.logo
                 ? `<img src="${job.logo}" alt="${job.company[lang]}">`
                 : '<i class="fa-solid fa-briefcase"></i>';
 
             return `
                 <article class="timeline-card ${isOpen ? "open" : ""}">
+                    <div class="timeline-year" aria-hidden="true">${yearLabel}</div>
                     <button class="timeline-header" type="button" aria-expanded="${isOpen}" data-role="timeline-toggle">
                         <div class="logo-wrap">${logo}</div>
                         <div class="timeline-meta">
@@ -848,7 +958,7 @@ function renderEducation(locale, lang) {
     elements.educationTitle.textContent = locale.education.title;
     elements.educationList.innerHTML = sharedData.education
         .map((item) => `
-            <article class="spotlight-card">
+            <article class="spotlight-card ${item.key === "degree" ? "spotlight-card-degree" : ""}">
                 <h3>${item.title[lang]}</h3>
                 <p><strong>${item.institution}</strong></p>
                 <p>${item.description[lang]}</p>
@@ -858,6 +968,7 @@ function renderEducation(locale, lang) {
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </a>
                 ` : ""}
+                ${item.key === "degree" ? `<span class="degree-neon-badge">Finalizando</span>` : ""}
             </article>
         `)
         .join("");
@@ -924,11 +1035,16 @@ function renderNav(locale) {
 
 function renderHero(locale) {
     elements.heroEyebrow.textContent = locale.hero.eyebrow;
-    elements.heroTitle.textContent = locale.hero.title;
+    elements.heroTitle.innerHTML = buildHeroTitleMarkup(state.lang, locale.hero.title);
     elements.heroLead.textContent = locale.hero.lead;
     elements.primaryCta.textContent = locale.hero.primaryCta;
     elements.secondaryCta.textContent = locale.hero.secondaryCta;
-    elements.availabilityCopy.textContent = locale.hero.availability;
+    elements.availabilityCopy.innerHTML = `
+        <span class="availability-text">
+            <strong>${locale.hero.availability.title}</strong>
+            <span>${locale.hero.availability.subtitle}</span>
+        </span>
+    `;
 }
 
 function setDocumentLanguage(lang) {
@@ -1062,11 +1178,75 @@ function setupContactTilt() {
     });
 }
 
+function setupPrimaryCtaFlight() {
+    const button = elements.primaryCta;
+    const target = document.getElementById("contact");
+    if (!button || !target) {
+        return;
+    }
+
+    if (!button.querySelector(".cta-click-flash")) {
+        const flash = document.createElement("span");
+        flash.className = "cta-click-flash";
+        flash.setAttribute("aria-hidden", "true");
+        button.appendChild(flash);
+    }
+
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+        button.classList.remove("is-flashing");
+        void button.offsetWidth;
+        button.classList.add("is-flashing");
+        window.setTimeout(() => {
+            button.classList.remove("is-flashing");
+        }, 520);
+
+        const startY = window.scrollY;
+        const targetY = target.getBoundingClientRect().top + window.scrollY - 24;
+        const distance = targetY - startY;
+        const duration = 1900;
+        const start = performance.now();
+
+        function easeCinematic(t) {
+            return t < 0.5
+                ? 4 * t * t * t
+                : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+
+        function step(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeCinematic(progress);
+            const turbulence =
+                Math.sin(progress * Math.PI * 3.8) * 42 * (1 - progress) +
+                Math.sin(progress * Math.PI * 8.6) * 12 * (1 - progress * 0.9);
+            const overshoot = Math.sin(progress * Math.PI) * 22 * (1 - progress);
+
+            window.scrollTo({
+                top: startY + distance * eased + turbulence + overshoot,
+                behavior: "auto"
+            });
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                window.scrollTo({
+                    top: targetY,
+                    behavior: "auto"
+                });
+            }
+        }
+
+        requestAnimationFrame(step);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     setupLanguageButtons();
     setupRevealObserver();
     setupSectionObserver();
     setupScrollEffects();
     setupContactTilt();
+    setupPrimaryCtaFlight();
     setActiveLanguage(state.lang);
 });
