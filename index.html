@@ -3,55 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Juan Carlos Daniel Giordano</title>
-    <meta name="description" content="CV de Juan Carlos Daniel Giordano, Analista de Sistemas y Marketing Sr. con experiencia en tecnología de la información, análisis de datos y marketing digital.">
-    <meta name="keywords" content="Juan Carlos Daniel Giordano, CV, Analista de Sistemas, Marketing Sr., tecnología de la información, análisis de datos, marketing digital">
+    <title>Juan Carlos Daniel Giordano | CV Interactivo</title>
+    <meta name="description" content="CV online interactivo de Juan Carlos Daniel Giordano: marketing, IT, automatizacion, analitica y desarrollo aplicado a crecimiento digital.">
+    <meta name="keywords" content="Juan Carlos Daniel Giordano, CV, marketing digital, IT, performance marketing, paid media, SEO, automatizacion, desarrollo web">
     <meta name="author" content="Juan Carlos Daniel Giordano">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta property="og:title" content="Juan Carlos Daniel Giordano | CV Interactivo">
+    <meta property="og:description" content="Una experiencia web inmersiva que resume trayectoria en marketing, tecnologia, automatizacion y growth.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/foto-perfil.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="bg-dark text-white text-center py-3">
-        <div class="header-container">
-            <div class="title-container">
-                <h1>Juan Carlos Daniel Giordano</h1>
-                <p>Analista de Sistemas | Marketing Sr.</p>
+    <div class="page-shell">
+        <div class="ambient ambient-a"></div>
+        <div class="ambient ambient-b"></div>
+
+        <header class="topbar">
+            <a class="brand" href="#hero">
+                <span class="brand-mark">JG</span>
+                <span class="brand-copy">
+                    <strong>Juan Giordano</strong>
+                    <span>Marketing + IT + Code</span>
+                </span>
+            </a>
+
+            <nav class="main-nav" aria-label="Principal">
+                <a href="#experience" data-nav="experience">Experiencia</a>
+                <a href="#education" data-nav="education">Estudios</a>
+                <a href="#certifications" data-nav="certifications">Cursos</a>
+                <a href="#skills" data-nav="skills">Stack</a>
+                <a href="#contact" data-nav="contact">Contacto</a>
+            </nav>
+
+            <div class="toolbar">
+                <div class="lang-switcher" aria-label="Selector de idioma">
+                    <button class="lang-btn active" data-lang="es" type="button">ES</button>
+                    <button class="lang-btn" data-lang="en" type="button">EN</button>
+                    <button class="lang-btn" data-lang="pt" type="button">PT</button>
+                </div>
+                <a class="ghost-btn" href="https://www.linkedin.com/in/jcdgiordano" target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
-            <div>
-                <img src="images/Sin%20título-2.png" alt="Juan Carlos Daniel Giordano" class="profile-pic">
-                <a class="libutton mt-3" href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=jcdgiordano" target="_blank">Follow on LinkedIn</a>
-            </div>
-        </div>
-    </header>
-    <nav class="nav-menu">
-        <input type="checkbox" id="menu-toggle">
-        <label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
-        <ul class="menu">
-            <li class="nav-item"><a class="nav-link" href="#profile">Perfil</a></li>
-            <li class="nav-item"><a class="nav-link" href="#experience">Experiencia</a></li>
-            <li class="nav-item"><a class="nav-link" href="#education">Educación</a></li>
-            <li class="nav-item"><a class="nav-link" href="#skills">Habilidades</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
-        </ul>
-    </nav>
-    <main id="content" class="container my-5">
-        <!-- Content will be dynamically loaded here -->
-    </main>
-    <footer>
-        <div class="language-switcher" id="language-switcher">
-            <img id="current-lang" src="images/flag-es.png" alt="Español">
-            <div class="language-options" id="language-options">
-                <img src="images/flag-es.png" alt="Español" data-lang="es">
-                <img src="images/flag-en.png" alt="Inglés" data-lang="en">
-                <img src="images/flag-pt.png" alt="Portugués" data-lang="pt">
-            </div>
-        </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        </header>
+
+        <main>
+            <section class="hero reveal" id="hero">
+                <div class="hero-copy">
+                    <p class="eyebrow" id="hero-eyebrow"></p>
+                    <h1 id="hero-title"></h1>
+                    <p class="hero-lead" id="hero-lead"></p>
+
+                    <div class="hero-cta">
+                        <a class="primary-btn" href="#contact" id="primary-cta"></a>
+                        <a class="secondary-btn" href="#experience" id="secondary-cta"></a>
+                    </div>
+
+                    <div class="stats-grid" id="stats-grid"></div>
+                </div>
+
+                <aside class="hero-panel reveal">
+                    <div class="portrait-card">
+                        <div class="portrait-frame">
+                            <img src="images/foto-perfil.png" alt="Foto de Juan Carlos Daniel Giordano">
+                        </div>
+                        <div class="availability">
+                            <span class="pulse"></span>
+                            <span id="availability-copy"></span>
+                        </div>
+                    </div>
+
+                    <div class="focus-card">
+                        <p class="focus-label" id="focus-label"></p>
+                        <div class="focus-list" id="focus-list"></div>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="section reveal" id="profile">
+                <div class="section-heading">
+                    <p class="section-kicker" id="profile-kicker"></p>
+                    <h2 id="profile-title"></h2>
+                </div>
+                <div class="profile-grid">
+                    <article class="profile-story glass-card">
+                        <p id="profile-summary"></p>
+                    </article>
+                    <article class="profile-highlights glass-card">
+                        <h3 id="profile-highlights-title"></h3>
+                        <div class="chip-grid" id="profile-highlights"></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section reveal" id="experience">
+                <div class="section-heading">
+                    <p class="section-kicker" id="experience-kicker"></p>
+                    <h2 id="experience-title"></h2>
+                </div>
+                <div class="timeline" id="experience-list"></div>
+            </section>
+
+            <section class="section reveal" id="education">
+                <div class="section-heading">
+                    <p class="section-kicker" id="education-kicker"></p>
+                    <h2 id="education-title"></h2>
+                </div>
+                <div class="spotlight-grid" id="education-list"></div>
+            </section>
+
+            <section class="section reveal" id="certifications">
+                <div class="section-heading">
+                    <p class="section-kicker" id="certifications-kicker"></p>
+                    <h2 id="certifications-title"></h2>
+                </div>
+                <div class="cert-grid" id="certifications-list"></div>
+            </section>
+
+            <section class="section reveal" id="skills">
+                <div class="section-heading">
+                    <p class="section-kicker" id="skills-kicker"></p>
+                    <h2 id="skills-title"></h2>
+                </div>
+                <div class="skills-layout">
+                    <div class="skill-clusters" id="skill-clusters"></div>
+                    <div class="tools-panel glass-card">
+                        <h3 id="tools-title"></h3>
+                        <div class="chip-grid" id="tools-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section reveal" id="contact">
+                <div class="contact-banner">
+                    <div class="contact-orbit contact-orbit-a"></div>
+                    <div class="contact-orbit contact-orbit-b"></div>
+                    <div class="contact-hero">
+                        <p class="section-kicker" id="contact-kicker"></p>
+                        <h2 id="contact-title"></h2>
+                        <p id="contact-lead"></p>
+                        <a class="primary-btn contact-primary-cta" id="contact-primary-cta" href="mailto:giordanojcd@gmail.com"></a>
+                    </div>
+                    <div class="contact-layout">
+                        <figure class="contact-visual" data-contact-tilt>
+                            <img src="images/foto-contacto.png" alt="Presentación visual de desarrollo, automatización e impacto">
+                        </figure>
+                        <div class="contact-actions" id="contact-actions"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <a class="floating-whatsapp" href="https://wa.me/5491165539645" target="_blank" rel="noreferrer" aria-label="Abrir chat de WhatsApp con Juan Carlos Daniel Giordano">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
     <script src="js/script.js"></script>
 </body>
 </html>
